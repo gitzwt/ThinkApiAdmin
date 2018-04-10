@@ -1,0 +1,74 @@
+{extend name="extra@api/main"}
+
+{block name='body'}
+<div class="ui text container" style="max-width: none !important;">
+    <div class="ui floating message">
+        <h1 class="ui header">{:sysconf('site_name')} - {$title} {:sysconf('app_version')}</h1>
+        <a href="{:url('/wiki/errorcode')}">
+            <button class="ui red button" style="margin-top: 15px">错误码说明</button>
+        </a>
+        <a href="{:url('/wiki/calculation')}">
+            <button class="ui orange button" style="margin-top: 15px">算法详解</button>
+        </a>
+        <div class="ui teal message">
+            <strong>API统一访问地址：</strong> {$api_url}接口唯一标识(hash)
+        </div>
+        <div class="ui floating message">
+            <div class="content">
+                <div class="header" style="margin-bottom: 15px">接口状态说明：</div>
+                <p><span class='ui teal label'>测试</span> 系统将不过滤任何字段，也不进行AccessToken的认证，但在必要的情况下会进行UserToken认证！</p>
+                <p><span class='ui blue label'>启用</span> 系统将严格过滤请求字段，并且进行全部必要认证！</p>
+                <p><span class='ui red label'>禁用</span> 系统将拒绝所有请求，一般应用于危机处理！</p>
+            </div>
+            <br>
+            <div class="content">
+                <div class="header" style="margin-bottom: 15px">参数字段状态说明：</div>
+                <p><span class="ui green label">必填</span> 系统将严格获取请求字段，必填字段,无值时请传默认值！</p>
+                <p><span class="ui teal label">可选</span> 系统按需获取请求字段，可填字段,无值时自动采用接口事先设定默认值！</p>
+            </div>
+        </div>
+        <!--测试-->
+        <?php $vo['id'] = 1; ?>
+        <div class="ui cards four column">
+            <!--循环-->
+            {volist name="apiGroup" id="vo"}
+            <div class="card column">
+                <a class="image" href="{:url('/wiki/'.$vo.id)}">
+                    <img src="{$vo.img|default='__PUBLIC__/static/api/img/api_default.jpg'}" style="height: 177.72px;">
+                </a>
+                <div class="content">
+                    <a class="header" href="{:url('/wiki/'.$vo.id)}">
+                        {$vo.name}
+                    </a>
+                    <a class="meta" href="{:url('/wiki/'.$vo.id)}">
+                        <span class="group" style="font-size: 0.8em;">{$vo.create_at}</span>
+                    </a>
+                    <a class="description" style="display: block;font-size: 0.8em;" href="{:url('/wiki/'.$vo.id)}">
+                        {php}
+                            $len = mb_strlen($vo['description'], 'utf8');
+                            if($len > 31) {
+                                echo mb_substr($vo['description'], 0, 31, 'utf8') . '...';
+                            } else {
+                                echo $vo['description'];
+                            }
+                        {/php}
+                    </a>
+                </div>
+                <div class="extra content" style="font-size: 0.9em">
+                    <a class="right floated created" href="{:url('/wiki/'.$vo.id)}">
+                        <i class="fire icon"></i>
+                        热度{$vo.hot_num|num2String}
+                    </a>
+                    <a class="friends" href="{:url('/wiki/'.$vo.id)}">
+                        <i class="cubes icon"></i>
+                        共{$vo.apiNum}个接口
+                    </a>
+                </div>
+            </div>
+            {/volist}
+        </div>
+        <p>&copy; Powered By <a href="/" target="_blank">{:sysconf('site_copy')}</a>
+        <p>
+    </div>
+</div>
+{/block}

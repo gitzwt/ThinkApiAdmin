@@ -1,0 +1,42 @@
+{extend name="extra@api/main"}
+
+{block name='body'}
+<div class="ui text container" style="max-width: none !important;">
+    <div class="ui floating message">
+        <h1 class="ui header">{:sysconf('site_name')} - {$title} {:sysconf('app_version')}</h1>
+        <a href="{:url('/wiki')}">
+            <button class="ui green button" style="margin-top: 15px">返回文档首页</button>
+        </a>
+        <table class="ui red celled striped table">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>英文标识</th>
+                <th>错误码</th>
+                <th>中文说明</th>
+            </tr>
+            </thead>
+            <tbody>
+            {volist name="codeArr" id="vo"}
+            <tr>
+                <td>
+                    {$i}
+                </td>
+                <td>
+                    {$key}
+                </td>
+                <td>
+                    <b>{$vo}</b>
+                </td>
+                <td>
+                    {$errorInfo[$vo]}
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+        <p>&copy; Powered By <a href="/" target="_blank">{:sysconf('site_copy')}</a>
+        <p>
+    </div>
+</div>
+{/block}
