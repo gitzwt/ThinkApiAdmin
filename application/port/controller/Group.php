@@ -201,10 +201,10 @@ class Group extends BasicAdmin
     public function forbid()
     {
         if (DataService::update($this->table_api_group)) {
-            LogService::write('API接口管理管理', '功能禁用成功');
+            LogService::write('API接口管理', '功能禁用成功');
             $this->success("功能禁用成功!", '');
         }
-        LogService::write('API接口管理管理', '功能禁用失败');
+        LogService::write('API接口管理', '功能禁用失败');
         $this->error("功能禁用失败, 请稍候再试!");
     }
 
@@ -216,10 +216,10 @@ class Group extends BasicAdmin
     public function resume()
     {
         if (DataService::update($this->table_api_group)) {
-            LogService::write('API接口管理管理', '功能启用成功');
+            LogService::write('API接口管理', '功能启用成功');
             $this->success("功能启用成功!", '');
         }
-        LogService::write('API接口管理管理', '功能启用失败');
+        LogService::write('API接口管理', '功能启用失败');
         $this->error("功能启用失败, 请稍候再试!");
     }
 

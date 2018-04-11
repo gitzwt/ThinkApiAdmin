@@ -222,3 +222,25 @@ function is_https()
     }
     return false;
 }
+
+/**
+ * 文字超出长度部分转...
+ * @param $str
+ * @param $len
+ * @param string $suffix
+ * @return string
+ */
+function cut_str($str, $len = 8, $suffix = "...")
+{
+    if (function_exists('mb_substr')) {
+        if (strlen($str) > $len) {
+            $str = mb_substr($str, 0, $len) . $suffix;
+        }
+        return $str;
+    } else {
+        if (strlen($str) > $len) {
+            $str = substr($str, 0, $len) . $suffix;
+        }
+        return $str;
+    }
+}

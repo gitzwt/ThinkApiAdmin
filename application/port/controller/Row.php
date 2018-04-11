@@ -228,10 +228,10 @@ class Row extends BasicAdmin
         $api = Db::name($this->table_api_list)->where('id', $api_id)->find();
         empty($api) && $this->error('需要操作的数据不存在!');
         if (false !== Db::name($this->table_api_list)->where('id', $api_id)->setField('gid', $tags)) {
-            LogService::write('API接口管理管理', '接口分组设置成功');
+            LogService::write('API接口管理', '接口分组设置成功');
             $this->success('接口分组设置成功!', '');
         }
-        LogService::write('API接口管理管理', '接口分组设置失败');
+        LogService::write('API接口管理', '接口分组设置失败');
         $this->error('接口分组设置失败, 请稍候再试!');
     }
 
@@ -243,10 +243,10 @@ class Row extends BasicAdmin
     public function forbid()
     {
         if (DataService::update($this->table_api_list)) {
-            LogService::write('API接口管理管理', '功能禁用成功');
+            LogService::write('API接口管理', '功能禁用成功');
             $this->success("功能禁用成功!", '');
         }
-        LogService::write('API接口管理管理', '功能禁用失败');
+        LogService::write('API接口管理', '功能禁用失败');
         $this->error("功能禁用失败, 请稍候再试!");
     }
 
@@ -258,10 +258,10 @@ class Row extends BasicAdmin
     public function resume()
     {
         if (DataService::update($this->table_api_list)) {
-            LogService::write('API接口管理管理', '功能启用成功');
+            LogService::write('API接口管理', '功能启用成功');
             $this->success("功能启用成功!", '');
         }
-        LogService::write('API接口管理管理', '功能启用失败');
+        LogService::write('API接口管理', '功能启用失败');
         $this->error("功能启用失败, 请稍候再试!");
     }
 

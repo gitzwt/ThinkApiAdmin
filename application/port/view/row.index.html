@@ -140,7 +140,7 @@
             </td>
             <td class='text-left'>{$vo.apiName|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center'><a href="{:url('@')}api/{$vo.hash}" target="_blank">{$vo.hash|default="<span style='color:#ccc'>暂无</span>"}</a></td>
-            <td class='text-center'>{$vo.info|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-center'>{$vo.info|cut_str|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center'>{$vo.method==1?'post':($vo.method==2?'get':'不限')}</td>
             <td class='text-center'>
                 <span style="color:#090">{:sysconf('app_version')}</span>

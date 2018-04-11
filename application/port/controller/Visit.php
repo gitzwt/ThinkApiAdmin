@@ -83,10 +83,10 @@ class Visit extends BasicAdmin
     public function forbid()
     {
         if (DataService::update($this->table_api_app)) {
-            LogService::write('API接口管理管理', '应用禁用成功');
+            LogService::write('API接口管理', '应用禁用成功');
             $this->success("应用禁用成功!", '');
         }
-        LogService::write('API接口管理管理', '应用禁用失败');
+        LogService::write('API接口管理', '应用禁用失败');
         $this->error("应用禁用失败, 请稍候再试!");
     }
 
@@ -98,10 +98,10 @@ class Visit extends BasicAdmin
     public function resume()
     {
         if (DataService::update($this->table_api_app)) {
-            LogService::write('API接口管理管理', '应用启用成功');
+            LogService::write('API接口管理', '应用启用成功');
             $this->success("应用启用成功!", '');
         }
-        LogService::write('API接口管理管理', '应用启用失败');
+        LogService::write('API接口管理', '应用启用失败');
         $this->error("应用启用失败, 请稍候再试!");
     }
 
@@ -184,10 +184,10 @@ class Visit extends BasicAdmin
     public function forbid_doc()
     {
         if (DataService::update($this->table_api_document)) {
-            LogService::write('API接口管理管理', '文档密钥禁用成功');
+            LogService::write('API接口管理', '文档密钥禁用成功');
             $this->success("文档密钥禁用成功!", '');
         }
-        LogService::write('API接口管理管理', '文档密钥禁用失败');
+        LogService::write('API接口管理', '文档密钥禁用失败');
         $this->error("文档密钥禁用失败, 请稍候再试!");
     }
 
@@ -199,10 +199,10 @@ class Visit extends BasicAdmin
     public function resume_doc()
     {
         if (DataService::update($this->table_api_document)) {
-            LogService::write('API接口管理管理', '文档密钥启用成功');
+            LogService::write('API接口管理', '文档密钥启用成功');
             $this->success("文档密钥启用成功!", '');
         }
-        LogService::write('API接口管理管理', '文档密钥启用失败');
+        LogService::write('API接口管理', '文档密钥启用失败');
         $this->error("文档密钥启用失败, 请稍候再试!");
     }
 

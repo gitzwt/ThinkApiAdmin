@@ -1,9 +1,11 @@
 ThinkApiAdmin for PHP
 --
 * ThinkApiAdmin 是一个基于 Thinkphp 5.0.x 对[ThinkAdmin](https://gitee.com/zoujingli/Think.Admin)V2版本和[ApiAdmin](https://gitee.com/apiadmin/ApiAdmin)V2版本整合开发的后台管理系统，集成后台系统常用功能和API接口管理。
+* 如需使用前后端分离接口管理请使用ApiAdmin V3版本
 * 项目安装及二次开发请参考 ThinkPHP 官方文档及下面的服务环境说明，数据库 sql 文件存放于项目根目录下。
-> 注意：项目测试请另行搭建环境并创建数据库（数据库配置 application/database.php）, 切勿直接使用测试环境数据！
-> 后台账号密码:admin
+> 注意：项目测试请另行搭建环境并创建数据库（修改数据库配置 application/database.php.dev => database.php）, 切勿直接使用测试环境数据！
+> * 测试Demo地址: http://demo.zwt520.com
+> * 后台账号密码:admin admin
 
 Repositorie
 --
@@ -34,7 +36,7 @@ Module
  4. 灵活的参数规则设定
  5. 接口在线测试
  6. 基于哈希值的接口请求地址
- 7. 跟多接口功能开发中...
+ 7. 更多接口功能开发中...
 ![接口文档首页](https://gitee.com/uploads/images/2018/0411/165622_a6c172a3_991419.png "接口文档首页")
 ![文档详情页](https://gitee.com/uploads/images/2018/0411/165656_774a4ab4_991419.png "文档详情页")
 ![接口请求模拟](https://gitee.com/uploads/images/2018/0411/165720_31eeb665_991419.png "接口请求模拟")
@@ -45,7 +47,7 @@ Module
 --
 * 接口文档分组
 * 新增接口
-* 更多开发中... 
+* 接口参数添加编辑开发中... 
 ![接口管理](https://gitee.com/uploads/images/2018/0411/165742_33eb22a3_991419.png "后台接口管理")
 
 
