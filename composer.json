@@ -1,18 +1,22 @@
 {
-    "name": "topthink/think",
-    "description": "the new thinkphp framework",
+    "name": "ThinkApiAdmin",
+    "description": "ThinkApiAdmin wechat&api Admin",
     "type": "project",
     "keywords": [
         "framework",
         "thinkphp",
-        "ORM"
+        "ThinkApiAdmin",
+        "wechat",
+        "RBAC",
+        "ORM",
+        "Api"
     ],
     "homepage": "http://thinkphp.cn/",
-    "license": "Apache-2.0",
+    "license": "MIT",
     "authors": [
         {
-            "name": "liu21st",
-            "email": "liu21st@gmail.com"
+            "name": "nh侬佪",
+            "email": "zwt0706@gmail.com"
         }
     ],
     "require": {
@@ -28,7 +32,8 @@
         "aliyuncs/oss-sdk-php": "^2.2",
         "flc/dysms": "^1.0",
         "zoujingli/pay-php-sdk": "^1.0",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "yuan1994/tp-mailer": "^0.2.4"
     },
     "extra": {
         "think-path": "thinkphp"

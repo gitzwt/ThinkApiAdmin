@@ -219,7 +219,7 @@ class ToolsService
             $sendSms->setTemplateCode($code);
             $sendSms->setTemplateParam($param);
             $sendSms->setPhoneNumbers($phone);
-            $sendSms->setSignName($signname ?: config('api.SIGN_NAME'));
+            $sendSms->setSignName($signname ?? config('api.SIGN_NAME'));
             $sendSms->setOutId($outid);
             $result['msg'] = ($client->execute($sendSms))->Message;
             $result['code'] = 200;

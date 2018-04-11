@@ -42,6 +42,31 @@ return [
             'api/Tool/uploadFiles',
             ['method' => 'post', 'after_behavior' => $afterBehavior]
         ],
+        // 根据手机号获取验证码 (短信签名) 5acd9f48bb275
+        '5acd9f48bb275' => [
+            'api/Tool/getVcodeByMobile',
+            ['method' => 'get', 'after_behavior' => $afterBehavior]
+        ],
+        // 根据Email获取验证码 5acdaf03ae160
+        '5acdaf03ae160' => [
+            'api/Tool/getVcodeByEmail',
+            ['method' => 'get', 'after_behavior' => $afterBehavior]
+        ],
+        // 获取省份名称和ID 5a6ad33cd8b30
+        '5a6ad33cd8b30' => [
+            'api/Tool/getProvinceList',
+            ['method' => 'get', 'after_behavior' => $afterBehavior]
+        ],
+        // 获取城市名称和ID通过省份ID 5a6ad3bc9c27e
+        '5a6ad3bc9c27e' => [
+            'api/Tool/getCityListByPid',
+            ['method' => 'get', 'after_behavior' => $afterBehavior]
+        ],
+        // 获取县区名称和ID通过城市ID 5a6ad401210c7
+        '5a6ad401210c7' => [
+            'api/Tool/getDistrictListByCid',
+            ['method' => 'get', 'after_behavior' => $afterBehavior]
+        ],
 
         // 接口Hash异常跳转
         '__miss__' => ['api/Miss/index'],

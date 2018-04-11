@@ -3,6 +3,7 @@ ThinkApiAdmin for PHP
 * ThinkApiAdmin 是一个基于 Thinkphp 5.0.x 对[ThinkAdmin](https://gitee.com/zoujingli/Think.Admin)V2版本和[ApiAdmin](https://gitee.com/apiadmin/ApiAdmin)V2版本整合开发的后台管理系统，集成后台系统常用功能和API接口管理。
 * 项目安装及二次开发请参考 ThinkPHP 官方文档及下面的服务环境说明，数据库 sql 文件存放于项目根目录下。
 > 注意：项目测试请另行搭建环境并创建数据库（数据库配置 application/database.php）, 切勿直接使用测试环境数据！
+> 后台账号密码:admin
 
 Repositorie
 --
@@ -10,8 +11,7 @@ Repositorie
 >* 码云托管地址：https://gitee.com/gitzwt/ThinkApiAdmin
 >* GitHub地址: https://github.com/gitzwt/ThinkApiAdmin
 
-
-# ThinkAdmin 原始功能模块
+## ThinkAdmin 原始功能模块
 
 Module
 --
@@ -21,10 +21,10 @@ Module
 * `Http`服务组件（原生`CURL`封装，兼容PHP多版本）
 * 微信公众号服务组件（基于[wechat-php-sdk](https://github.com/zoujingli/wechat-php-sdk)，微信网页授权获取用户信息、已关注粉丝管理、自定义菜单管理等等）
 * 微信商户支付服务组件（基于[wechat-php-sdk](https://github.com/zoujingli/wechat-php-sdk)，支持JSAPI支付、扫码模式一支付、扫码模式二支付）
-* 测试公众号名称：思过崖思过 （大家可以关注它来进行简单的测试）
 * 更多组件开发中...
+![微信管理](https://gitee.com/uploads/images/2018/0411/165535_04341af9_991419.png "微信管理")
 
-# ApiAdmin 原始功能模块
+## ApiAdmin 原始功能模块
 
 Module
 --
@@ -35,6 +35,9 @@ Module
  5. 接口在线测试
  6. 基于哈希值的接口请求地址
  7. 跟多接口功能开发中...
+![接口文档首页](https://gitee.com/uploads/images/2018/0411/165622_a6c172a3_991419.png "接口文档首页")
+![文档详情页](https://gitee.com/uploads/images/2018/0411/165656_774a4ab4_991419.png "文档详情页")
+![接口请求模拟](https://gitee.com/uploads/images/2018/0411/165720_31eeb665_991419.png "接口请求模拟")
  
 # ThinkApiAdmin 整合后台模块
 
@@ -43,6 +46,7 @@ Module
 * 接口文档分组
 * 新增接口
 * 更多开发中... 
+![接口管理](https://gitee.com/uploads/images/2018/0411/165742_33eb22a3_991419.png "后台接口管理")
 
 
 Environment
