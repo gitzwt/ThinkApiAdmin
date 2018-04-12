@@ -96,8 +96,8 @@ class Tool extends BasicApi
         $res = $mailer->to($email)
             ->subject('邮件验证码')
             ->line('尊敬的用户:')
-            ->line('    您好!您本次的验证码为:{vcode}', ['vcode' => $v_code])
-            ->line('    打死也不要告诉别人哦!')
+            ->line('        您好!您本次的验证码为:{vcode}', ['vcode' => $v_code])
+            ->line('        打死也不要告诉别人哦!')
             ->line(sysconf('site_name'))
             ->line(date('Y-m-d H:i:s'))
             ->send();

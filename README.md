@@ -5,7 +5,9 @@ ThinkApiAdmin for PHP
 * 项目安装及二次开发请参考 ThinkPHP 官方文档及下面的服务环境说明，数据库 sql 文件存放于项目根目录下。
 > 注意：项目测试请另行搭建环境并创建数据库（修改数据库配置 application/database.php.dev => database.php）, 切勿直接使用测试环境数据！
 > * 测试Demo地址: http://demo.zwt520.com
-> * 后台账号密码:admin admin
+> * 后台账号密码: admin admin
+> * 接口文档地址: http://demo.zwt520.com/wiki.html
+> * 文档访问密钥: demo666
 
 Repositorie
 --

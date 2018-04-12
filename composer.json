@@ -33,7 +33,8 @@
         "flc/dysms": "^1.0",
         "zoujingli/pay-php-sdk": "^1.0",
         "phpoffice/phpexcel": "^1.8",
-        "yuan1994/tp-mailer": "^0.2.4"
+        "yuan1994/tp-mailer": "^0.2.4",
+        "topthink/think-worker": "^1.0"
     },
     "extra": {
         "think-path": "thinkphp"

@@ -9,6 +9,7 @@ namespace app\port\controller;
 use controller\BasicAdmin;
 use service\DataService;
 use service\LogService;
+use app\util\Strs;
 use think\Db;
 
 /**
@@ -65,14 +66,75 @@ class Visit extends BasicAdmin
         $this->assign(['handlers' => $handlers]);
     }
 
+    /**
+     * 添加接口应用
+     * @return \think\response\View
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
     public function add()
     {
-
+        if ($this->request->isGet()) {
+            $vo['app_id'] = Strs::randString(8, 1);
+            $vo['app_secret'] = Strs::randString(32);
+            return view('appform', ['vo' => $vo]);
+        }
+        $param = $this->request->param();
+        empty($param['app_name']) && $this->error('请填写应用名称!');
+        empty($param['app_info']) && $this->error('请填写应用说明!');
+        $api_name = Db::name($this->table_api_app)->where('app_name', $param['app_name'])->find();
+        if (!empty($api_name)) {
+            $this->error('该应用名已存在,请勿重复添加!');
+        }
+        $data = [
+            'app_id' => $param['app_id'],
+            'app_secret' => $param['app_secret'],
+            'app_name' => $param['app_name'],
+            'app_info' => $param['app_info'],
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_app, $data)) {
+            LogService::write('API接口管理', '添加接口应用成功');
+            $this->success('添加接口应用成功!', '');
+        }
+        LogService::write('API接口管理', '添加接口应用失败');
+        $this->error('添加接口应用失败, 请稍后再试!');
     }
 
+    /**
+     * 编辑接口应用
+     * @return array|mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
     public function edit()
     {
-
+        if ($this->request->isGet()) {
+            return parent::_form($this->table_api_app, 'appform', 'id');
+        }
+        $param = $this->request->param();
+        empty($param['app_name']) && $this->error('请填写应用名称!');
+        empty($param['app_info']) && $this->error('请填写应用说明!');
+        $data = [
+            'id' => $param['id'],
+            'app_id' => $param['app_id'],
+            'app_secret' => $param['app_secret'],
+            'app_name' => $param['app_name'],
+            'app_info' => $param['app_info'],
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_app, $data)) {
+            LogService::write('API接口管理', '编辑接口应用成功');
+            $this->success('编辑接口应用成功!', '');
+        }
+        LogService::write('API接口管理', '编辑接口应用失败');
+        $this->error('编辑接口应用失败, 请稍后再试!');
     }
 
     /**
@@ -166,14 +228,75 @@ class Visit extends BasicAdmin
         $this->assign(['handlers' => $handlers]);
     }
 
+    /**
+     * 添加接口文档访问密钥
+     * @return \think\response\View
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
     public function add_doc()
     {
-
+        if ($this->request->isGet()) {
+            $vo['key'] = Strs::randString(20);
+            return view('docform', ['vo' => $vo]);
+        }
+        $param = $this->request->param();
+        empty($param['key']) && $this->error('请填写访问密钥!');
+        empty($param['endTime']) && $this->error('请选择密钥过期时间!');
+        $key = Db::name($this->table_api_document)->where('key', $param['key'])->find();
+        if (!empty($key)) {
+            $this->error('该访问密钥已存在,请勿重复添加!');
+        }
+        $data = [
+            'key' => $param['key'],
+            'endTime' => strtotime($param['endTime']),
+            'createTime' => time(),
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_document, $data)) {
+            LogService::write('API接口管理', '添加接口文档访问密钥成功');
+            $this->success('添加接口文档访问密钥成功!', '');
+        }
+        LogService::write('API接口管理', '添加接口文档访问密钥失败');
+        $this->error('添加接口文档访问密钥失败, 请稍后再试!');
     }
 
+    /**
+     * 编辑接口文档访问密钥
+     * @return \think\response\View
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
     public function edit_doc()
     {
-
+        if ($this->request->isGet()) {
+            $id = $this->request->get('id');
+            $vo = Db::name($this->table_api_document)->where('id',$id)->find();
+            $vo['endTime'] = date('Y-m-d',$vo['endTime']);
+            return view('docform', ['vo' => $vo]);
+        }
+        $param = $this->request->param();
+        empty($param['key']) && $this->error('请填写访问密钥!');
+        empty($param['endTime']) && $this->error('请选择密钥过期时间!');
+        $data = [
+            'id' => $param['id'],
+            'key' => $param['key'],
+            'endTime' => strtotime($param['endTime']),
+            'createTime' => time(),
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_document, $data)) {
+            LogService::write('API接口管理', '编辑接口文档访问密钥成功');
+            $this->success('编辑接口文档访问密钥成功!', '');
+        }
+        LogService::write('API接口管理', '编辑接口文档访问密钥失败');
+        $this->error('编辑接口文档访问密钥失败, 请稍后再试!');
     }
 
     /**

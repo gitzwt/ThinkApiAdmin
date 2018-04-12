@@ -236,11 +236,10 @@ function cut_str($str, $len = 8, $suffix = "...")
         if (strlen($str) > $len) {
             $str = mb_substr($str, 0, $len) . $suffix;
         }
-        return $str;
     } else {
         if (strlen($str) > $len) {
             $str = substr($str, 0, $len) . $suffix;
         }
-        return $str;
     }
+    return $str;
 }

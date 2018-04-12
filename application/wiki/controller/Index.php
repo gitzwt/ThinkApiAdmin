@@ -71,6 +71,7 @@ class Index extends Base
                 ->where('gid', 'like', '%' . $this->request->route('gid') . '%')
                 ->order(['sort' => 'asc','id' => 'desc']);
         });
+        if (empty($apiList)) $this->error('当前分组下暂无接口!');
         try {
             // 更新接口热度
             (new ApiGroup())->where('id', $gid)->setInc('hot_num', 1);
@@ -181,7 +182,7 @@ class Index extends Base
             'codeArr'   => $codeArr,
         ]);
 
-        return $this->fetch();
+        return $this->fetch('errorcode');
     }
 
 }

@@ -3,7 +3,7 @@
 {block name="button"}
 <div class="nowrap pull-right" style="margin-top:10px">
     {if auth("$classuri/add_doc")}
-    <button data-modal="{:url('add_doc')}" data-title="添加API文档密钥" class='layui-btn layui-btn-small'><i
+    <button data-modal="{:url('add_doc')}" data-title="添加Api文档密钥" class='layui-btn layui-btn-small'><i
             class='fa fa-plus'></i> 添加文档密钥
     </button>
     {/if}
@@ -128,7 +128,7 @@
             <td class='text-center'>{$vo.handler_name|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center nowrap'>
                 {if auth("$classuri/edit_doc")}
-                <a data-modal='{:url("$classuri/edit_doc")}?id={$vo.id}' data-title="编辑分组" href="javascript:void(0)">编辑</a>
+                <a data-modal='{:url("$classuri/edit_doc")}?id={$vo.id}' data-title="编辑Api文档密钥" href="javascript:void(0)">编辑</a>
                 {/if}
                 {if auth("$classuri/del_doc")}
                 <span class="text-explode">|</span>

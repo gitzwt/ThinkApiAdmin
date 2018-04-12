@@ -9,8 +9,7 @@
 
         <label class="layui-form-label label-required">接口映射</label>
         <div class="col-xs-3">
-            <input type="text" name="hash" value='{$vo.hash|default=uniqid()}'
-                   title="请输入分组名称" placeholder="请输入分组名称" readonly class="layui-input">
+            <input type="text" name="hash" value='{$vo.hash|default=uniqid()}' readonly class="layui-input">
             <p class="help-block">系统自动生成，不允许修改</p>
         </div>
     </div>
@@ -59,7 +58,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label label-required">接口描述</label>
         <div class="col-xs-8">
-            <textarea name="info" class="layui-input" style="height:60px;resize:none;line-height:20px">{$vo.info|default=""}</textarea>
+            <textarea name="info" class="layui-input" placeholder="请输入接口描述" style="height:60px;resize:none;line-height:20px">{$vo.info|default=""}</textarea>
         </div>
     </div>
 
