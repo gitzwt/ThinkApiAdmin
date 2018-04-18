@@ -175,12 +175,12 @@ define(['jquery'], function () {
             return layer.open({title: title || '窗口', type: 2, area: ['800px', '530px'], fix: true, maxmin: false, content: url});
         };
         // 加载HTML到弹出层
-        this.modal = function (url, data, title, callback, loading, tips) {
+        this.modal = function (url, data, title, width, callback, loading, tips) {
             this.load(url, data, 'GET', function (res) {
                 if (typeof (res) === 'object') {
                     return $.msg.auto(res);
                 }
-                var layerIndex = layer.open({type: 1, btn: false, area: "800px", content: res, title: title || '', success: function (dom, index) {
+                var layerIndex = layer.open({type: 1, btn: false, area: width, content: res, title: title || '', success: function (dom, index) {
                         $(dom).find('[data-close]').off('click').on('click', function () {
                             if ($(this).attr('data-confirm')) {
                                 return $.msg.confirm($(this).attr('data-confirm'), function () {

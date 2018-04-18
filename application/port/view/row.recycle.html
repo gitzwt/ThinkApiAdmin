@@ -8,11 +8,11 @@
             class='fa fa-mail-reply-all'></i> 还原删除
     </button>
     {/if}
-    {if auth("$classuri/delete")}
-    <button data-update data-field='del' data-action='{:url("$classuri/delete")}'
-            class='layui-btn layui-btn-small layui-btn-danger'><i class='fa fa-trash'></i> 彻底删除
-    </button>
-    {/if}
+    <!--{if auth("$classuri/delete")}-->
+    <!--<button data-update data-field='del' data-action='{:url("$classuri/delete")}'-->
+            <!--class='layui-btn layui-btn-small layui-btn-danger'><i class='fa fa-trash'></i> 彻底删除-->
+    <!--</button>-->
+    <!--{/if}-->
 </div>
 {/block}
 
@@ -142,7 +142,7 @@
                 {/if}
                 {if auth("$classuri/delete")}
                 <span class="text-explode">|</span>
-                <a data-update="{$vo.id}" data-field='del' data-action='{:url("$classuri/delete")}'
+                <a data-update="{$vo.id}" data-value='{$vo.hash}' data-action='{:url("$classuri/delete")}'
                    href="javascript:void(0)" style="color:#c00">删除</a>
                 {/if}
             </td>

@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="__PUBLIC__/static/plugs/jsonFormater/jsonFormater.css?ver={:date('ymd')}"/>
+<script type="text/javascript" src="__PUBLIC__/static/plugs/jsonFormater/jsonFormater.js?ver={:date('ymd')}"></script>
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label label-required">json数据模版</label>
+        <div class="col-xs-8">
+            <textarea name="jsonStr" id="RawJson" class="layui-input" placeholder="请将接口返回的JSON字符串粘贴至此" style="height:100px;resize:none;line-height:20px"></textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="col-xs-8" style="text-align: center;">
+            <span class="layui-btn layui-btn-small layui-btn-danger" id="format">JSON格式化</span>
+            <span class="layui-btn layui-btn-small layui-btn-normal" id="collapseAll">全部收起</span>
+            <span class="layui-btn layui-btn-small layui-btn-warm" id="expandAll">全部展开</span>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">格式化后数据</label>
+        <div class="col-xs-8">
+            <pre style="max-height: 300px;overflow: auto;" class="layui-code" id="Canvas"></pre>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <input type="hidden" name="hash" value="{$vo['hash']?$vo['hash']:$Think.get.hash}">
+        <input type="hidden" name="type" value="{$vo['type']?$vo['type']:$Think.get.type}">
+        <button class="layui-btn" type="submit"><i class="fa fa-floppy-o"></i> 保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close><i class="fa fa-close"></i> 取消编辑</button>
+    </div>
+    <script>
+        window.form.render();
+
+        $(document).ready(function () {
+            var format = function () {
+                var options = {
+                    dom: '#Canvas',
+                    isCollapsible: true,
+                    quoteKeys: true,
+                    tabSize: 2,
+                    imgCollapsed: "__PUBLIC__/static/plugs/jsonFormater/Collapsed.gif",
+                    imgExpanded: "__PUBLIC__/static/plugs/jsonFormater/Expanded.gif"
+                };
+                window.jf = new JsonFormater(options);
+                jf.doFormat($('#RawJson').val());
+            };
+            $('#format').click(function () {
+                format();
+            });
+            $('#expandAll').click(function () {
+                window.jf.expandAll();
+            });
+            $('#collapseAll').click(function () {
+                window.jf.collapseLevel(2);
+            });
+        });
+    </script>
+</form>

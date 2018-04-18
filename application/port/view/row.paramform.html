@@ -1,0 +1,64 @@
+<form class="layui-form layui-box" style='padding:25px 30px 20px 0' action="__SELF__" data-auto="true" method="post">
+    <div class="layui-form-item">
+        <label class="layui-form-label label-required">字段名称</label>
+        <div class="col-xs-3">
+            <input type="text" name="showName" value='{$vo.showName|default=""}'
+                   title="请输入字段名称" placeholder="参数字段名称" class="layui-input">
+        </div>
+
+        <label class="layui-form-label label-required">数据类型</label>
+        <div class="col-xs-3">
+            <select name="dataType" class="input-sm form-control">
+                <option value="">- 选择类型 -</option>
+                <!--{foreach $dataType as $key=>$types}-->
+                <!--{if isset($vo.dataType)&&$vo.dataType eq $key}-->
+                <option selected value="{$key}">{$types}</option>
+                <!--{else}-->
+                <option value="{$key}">{$types}</option>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">默认值</label>
+        <div class="col-xs-3">
+            <input type="text" name="default" value='{$vo.default|default=""}'
+                   title="请输入默认值" placeholder="参数默认值" class="layui-input">
+        </div>
+
+        <label class="layui-form-label label-required">是否必填</label>
+        <div class="col-xs-3">
+            <select name="isMust" class="input-sm form-control">
+                <option {if empty($vo.isMust)||$vo.isMust=='1'}selected{/if} value="1">必填</option>
+                <option {if isset($vo.isMust)&&$vo.isMust=='0'}selected{/if} value="0">不必填</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">规则细节</label>
+        <div class="col-xs-8">
+            <textarea name="range" class="layui-input" placeholder="请输入符合要求的JSON字符串" style="height:60px;resize:none;line-height:20px">{$vo.range|default=""}</textarea>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">字段说明</label>
+        <div class="col-xs-8">
+            <textarea name="info" class="layui-input" placeholder="请输入字段说明" style="height:60px;resize:none;line-height:20px">{$vo.info|default=""}</textarea>
+        </div>
+    </div>
+
+    <div class="hr-line-dashed"></div>
+
+    <div class="layui-form-item text-center">
+        {if isset($vo['id'])}<input type='hidden' value='{$vo.id}' name='id'/>{/if}
+        <input type="hidden" name="hash" value="{$vo['hash']?$vo['hash']:$Think.get.hash}">
+        <input type="hidden" name="type" value="{$vo['type']?$vo['type']:$Think.get.type}">
+        <button class="layui-btn" type="submit"><i class="fa fa-floppy-o"></i> 保存数据</button>
+        <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close><i class="fa fa-close"></i> 取消编辑</button>
+    </div>
+    <script>window.form.render();</script>
+</form>

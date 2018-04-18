@@ -7,6 +7,7 @@
 namespace app\port\controller;
 
 use app\model\ApiList;
+use app\util\DataType;
 use controller\BasicAdmin;
 use service\DataService;
 use service\LogService;
@@ -26,6 +27,18 @@ class Row extends BasicAdmin
     public $table_api_list = 'ApiList';    //api接口列表
     public $table_api_group = 'ApiGroup';    //api接口组
     public $table_admin = 'SystemUser';      //系统用户表
+    public $table_api_fields = 'ApiFields';  //接口参数表
+    protected $dataType = [
+        DataType::TYPE_INTEGER => 'Integer',
+        DataType::TYPE_STRING => 'String',
+        DataType::TYPE_BOOLEAN => 'Boolean',
+        DataType::TYPE_ENUM => 'Enum',
+        DataType::TYPE_FLOAT => 'Float',
+        DataType::TYPE_FILE => 'File',
+        DataType::TYPE_MOBILE => 'Mobile',
+        DataType::TYPE_OBJECT => 'Object',
+        DataType::TYPE_ARRAY => 'Array'
+    ];  // 接口参数数据类型
 
     /**
      * 接口列表
@@ -296,18 +309,22 @@ class Row extends BasicAdmin
     }
 
     /**
-     * 彻底删除接口
+     * 彻底删除接口 删除对应的接口参数信息
      * @throws \think\Exception
      * @throws \think\exception\PDOException
      */
     public function delete()
     {
-        if (DataService::update($this->table_api_list)) {
+        $id = $this->request->post('id');
+        $hash = $this->request->post('value');
+        if (Db::name($this->table_api_list)->delete($id)) {
+            Db::name($this->table_api_fields)->where('hash', $hash)->delete();
             LogService::write('API接口管理', '彻底删除接口成功');
             $this->success("彻底删除接口成功!", '');
         }
         LogService::write('API接口管理', '彻底删除接口失败');
         $this->error("彻底删除接口失败, 请稍候失败!");
+        $this->error($hash);
     }
 
     /**
@@ -333,18 +350,320 @@ class Row extends BasicAdmin
     }
 
     /**
-     * 请求参数
+     * 接口参数列表
+     * @return array|mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
-    public function ask()
+    public function param()
     {
-
+        $this->title = '接口参数列表';
+        $get = $this->request->get();
+        $db = Db::name($this->table_api_fields);
+        foreach (['fieldName', 'hash'] as $key) {
+            if (isset($get[$key]) && $get[$key] !== '') {
+                $db->where($key, 'like', "%{$get[$key]}%");
+            }
+        }
+        foreach (['handler', 'type'] as $key) {
+            if (isset($get[$key]) && $get[$key] !== '') {
+                $db->where($key, $get[$key]);
+            }
+        }
+        return parent::_list($db);
     }
 
     /**
-     * 结果参数
+     * 列表数据处理
+     * @param $list
+     */
+    protected function _param_data_filter(&$list)
+    {
+        $handlers = Db::name($this->table_admin)->column('id,username');
+        foreach ($list as &$vo) {
+            $vo['handler_name'] = Db::name($this->table_admin)->where('id', $vo['handler'])->value('username');
+        }
+        $this->assign(['dataType' => $this->dataType, 'handlers' => $handlers]);
+    }
+
+    /**
+     * 接口参数添加
+     * @return array|mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
+    public function add_param()
+    {
+        if ($this->request->isGet()) {
+            $this->assign(['dataType' => $this->dataType]);
+            return parent::_form(null, 'paramform', 'id');
+        }
+        $param = $this->request->param();
+        empty($param['showName']) && $this->error('请填写参数字段名称!');
+        if (isset($param['dataType']) && $param['dataType'] === '') $this->error('请选择参数数据类型!');
+        $fields_name = Db::name($this->table_api_fields)->where('showName', $param['showName'])->find();
+        if (!empty($fields_name)) {
+            $this->error('该参数字段已存在,请勿重复添加!');
+        }
+        $data = [
+            'fieldName' => $param['showName'],
+            'hash' => $param['hash'],
+            'dataType' => $param['dataType'],
+            'default' => $param['default'],
+            'isMust' => $param['isMust'],
+            'range' => $param['range'],
+            'info' => $param['info'],
+            'type' => $param['type'],
+            'showName' => $param['showName'],
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_fields, $data)) {
+            LogService::write('API接口管理', '添加接口参数成功');
+            $this->success('添加接口参数成功!', '');
+        }
+        LogService::write('API接口管理', '添加接口参数失败');
+        $this->error('添加接口参数失败, 请稍后再试!');
+    }
+
+    /**
+     * 编辑接口参数
+     * @return array|mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
+    public function edit_param()
+    {
+        if ($this->request->isGet()) {
+            $this->assign(['dataType' => $this->dataType]);
+            return parent::_form($this->table_api_fields, 'paramform', 'id');
+        }
+        $param = $this->request->param();
+        empty($param['showName']) && $this->error('请填写参数字段名称!');
+        if (isset($param['dataType']) && $param['dataType'] === '') $this->error('请选择参数数据类型!');
+        $data = [
+            'id' => $param['id'],
+            'fieldName' => $param['showName'],
+            'hash' => $param['hash'],
+            'dataType' => $param['dataType'],
+            'default' => $param['default'],
+            'isMust' => $param['isMust'],
+            'range' => $param['range'],
+            'info' => $param['info'],
+            'type' => $param['type'],
+            'showName' => $param['showName'],
+            'handler' => session('user.id')
+        ];
+        if (false !== DataService::save($this->table_api_fields, $data)) {
+            LogService::write('API接口管理', '编辑接口参数成功');
+            $this->success('编辑接口参数成功!', '');
+        }
+        LogService::write('API接口管理', '编辑接口参数失败');
+        $this->error('编辑接口参数失败, 请稍后再试!');
+    }
+
+    /**
+     * 删除接口参数
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
+     */
+    public function del_param()
+    {
+        if (DataService::update($this->table_api_fields)) {
+            LogService::write('API接口管理', 'API接口参数删除成功');
+            $this->success("API接口参数删除成功!", '');
+        }
+        LogService::write('API接口管理', 'API接口参数删除失败');
+        $this->error("API接口参数删除失败, 请稍候再试!");
+    }
+
+    /**
+     * 请求参数列表
+     * @return array|mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     */
+    public function ask()
+    {
+        $get = $this->request->get();
+        $this->title = $get['hash'] . ' 的请求参数列表';
+        $db = Db::name($this->table_api_fields);
+        $db->where('type', 0);
+        if (!empty($get['hash'])) {
+            $db->where('hash', $get['hash']);
+        }
+        return parent::_list($db);
+    }
+
+    /**
+     * 列表数据处理
+     * @param $list
+     */
+    protected function _ask_data_filter(&$list)
+    {
+        foreach ($list as &$vo) {
+            $vo['handler_name'] = Db::name($this->table_admin)->where('id', $vo['handler'])->value('username');
+        }
+        $this->assign(['dataType' => $this->dataType, 'type' => 0]);
+    }
+
+    /**
+     * 响应参数列表
+     * @return array|mixed
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
      */
     public function res()
     {
-
+        $get = $this->request->get();
+        $this->title = $get['hash'] . ' 的响应参数列表';
+        $db = Db::name($this->table_api_fields);
+        $db->where('type', 1);
+        if (!empty($get['hash'])) {
+            $db->where('hash', $get['hash']);
+        }
+        return parent::_list($db);
     }
+
+    /**
+     * 列表数据处理
+     * @param $list
+     */
+    protected function _res_data_filter(&$list)
+    {
+        foreach ($list as &$vo) {
+            $vo['handler_name'] = Db::name($this->table_admin)->where('id', $vo['handler'])->value('username');
+        }
+        $this->assign(['dataType' => $this->dataType, 'type' => 1]);
+    }
+
+    /**
+     * 接口返回json上传格式化
+     * @return array|mixed
+     * @throws \think\Exception
+     * @throws \think\db\exception\DataNotFoundException
+     * @throws \think\db\exception\ModelNotFoundException
+     * @throws \think\exception\DbException
+     * @throws \think\exception\PDOException
+     */
+    public function upload_res()
+    {
+        if ($this->request->isGet()) {
+            return parent::_form(null, 'uploadform', 'id');
+        }
+        $param = $this->request->param();
+        empty($param['jsonStr']) && $this->error('请填写接口返回的JSON字符串!');
+        $jsonStr = html_entity_decode($param['jsonStr']);
+        $returnStr = json_decode($jsonStr, true);
+        $update_res = Db::name($this->table_api_list)->where('hash', $param['hash'])->setField('returnStr', json_encode($returnStr));
+        $this->handle($returnStr['data'], $dataArr);
+        $old = Db::name($this->table_api_fields)->where(['hash' => $param['hash'], 'type' => $param['type']])->select();
+        $oldArr = array_column($old, 'showName');
+        $newArr = array_column($dataArr, 'showName');
+        $addArr = array_diff($newArr, $oldArr);
+        $delArr = array_diff($oldArr, $newArr);
+        if ($delArr) {
+            Db::name($this->table_api_fields)->where('showName', 'in', $delArr)->delete();
+        }
+        if ($addArr) {
+            $addData = [];
+            foreach ($dataArr as $item) {
+                if (in_array($item['showName'], $addArr)) {
+                    $addData[] = $item;
+                }
+            }
+            $insert_res = Db::name($this->table_api_fields)->insertAll($addData);
+        }
+        if ($update_res || $insert_res) {
+            LogService::write('API接口管理', 'API接口响应参数上传成功');
+            $this->success("API接口返回json示例上传成功!", '');
+        }
+        LogService::write('API接口管理', 'API接口响应参数上传失败');
+        $this->success("API接口返回json示例上传失败!", '');
+    }
+
+    /**
+     * 响应参数json data数组规整化
+     * @param $data
+     * @param $dataArr
+     * @param string $prefix
+     * @param string $index
+     */
+    private function handle($data, &$dataArr, $prefix = 'data', $index = 'data')
+    {
+        $param = $this->request->param();
+        if (!$this->isAssoc($data)) {
+            $addArr = array(
+                'fieldName' => $index,
+                'showName' => $prefix,
+                'hash' => $param['hash'],
+                'isMust' => 1,
+                'dataType' => DataType::TYPE_ARRAY,
+                'type' => $param['type'],
+                'handler' => session('user.id')
+            );
+            $dataArr[] = $addArr;
+            $prefix .= '[]';
+            if (is_array($data[0])) {
+                $this->handle($data[0], $dataArr, $prefix);
+            }
+        } else {
+            $addArr = array(
+                'fieldName' => $index,
+                'showName' => $prefix,
+                'hash' => $param['hash'],
+                'isMust' => 1,
+                'dataType' => DataType::TYPE_OBJECT,
+                'type' => $param['type'],
+                'handler' => session('user.id')
+            );
+            $dataArr[] = $addArr;
+            $prefix .= '{}';
+            foreach ($data as $index => $datum) {
+                $myPre = $prefix . $index;
+                $addArr = array(
+                    'fieldName' => $index,
+                    'showName' => $myPre,
+                    'hash' => $param['hash'],
+                    'isMust' => 1,
+                    'dataType' => DataType::TYPE_STRING,
+                    'type' => $param['type'],
+                    'handler' => session('user.id')
+                );
+                if (is_numeric($datum)) {
+                    if (preg_match('/^\d*$/', $datum)) {
+                        $addArr['dataType'] = DataType::TYPE_INTEGER;
+                    } else {
+                        $addArr['dataType'] = DataType::TYPE_FLOAT;
+                    }
+                    $dataArr[] = $addArr;
+                } elseif (is_array($datum)) {
+                    $this->handle($datum, $dataArr, $myPre, $index);
+                } else {
+                    $addArr['dataType'] = DataType::TYPE_STRING;
+                    $dataArr[] = $addArr;
+                }
+            }
+        }
+    }
+
+    /**
+     * 判断是否是关联数组（true表示是关联数组）
+     * @param array $arr
+     * @return bool
+     */
+    private function isAssoc(array $arr)
+    {
+        if (array() === $arr) return false;
+        return array_keys($arr) !== range(0, count($arr) - 1);
+    }
+
 }

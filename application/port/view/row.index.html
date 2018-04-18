@@ -118,11 +118,12 @@
             </th>
             <th class='text-left'>接口名称</th>
             <th class='text-center'>接口映射</th>
-            <th class='text-center'>接口简介</th>
+            <th class='text-left'>接口简介</th>
             <th class='text-center'>请求方式</th>
             <th class='text-center'>请求Header要求</th>
             <th class='text-center'>接口分组</th>
             <th class='text-center'>接口状态</th>
+            <th class='text-center'>接口参数设置</th>
             <th class='text-center'>创建时间</th>
             <th class='text-center'>修改时间</th>
             <th class='text-center'>操作者</th>
@@ -140,8 +141,8 @@
             </td>
             <td class='text-left'>{$vo.apiName|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center'><a href="{:url('@')}api/{$vo.hash}" target="_blank">{$vo.hash|default="<span style='color:#ccc'>暂无</span>"}</a></td>
-            <td class='text-center'>{$vo.info|cut_str|default="<span style='color:#ccc'>暂无</span>"}</td>
-            <td class='text-center'>{$vo.method==1?'post':($vo.method==2?'get':'不限')}</td>
+            <td class='text-left'>{$vo.info|cut_str|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-center'>{$vo.method==1?'<span style="color:#c00">post</span>':($vo.method==2?'<span style="color:#090">get</span>':'不限')}</td>
             <td class='text-center'>
                 <span style="color:#090">{:sysconf('app_version')}</span>
                 {if $vo.accessToken eq 1}
@@ -205,12 +206,19 @@
                     {/if}
                 {/if}
             </td>
+            <td class='text-center nowrap'>
+                <a data-open='{:url("$classuri/ask")}?hash={$vo.hash}' data-title="请求字段列表" href="javascript:void(0)" style="color:#090">请求</a>
+                <!--<a data-modal='{:url("$classuri/ask")}?hash={$vo.hash}' data-title="请求字段列表" data-width="80%" href="javascript:void(0)" style="color:#090">请求</a>-->
+                <span class="text-explode">|</span>
+                <a data-open='{:url("$classuri/res")}?hash={$vo.hash}' data-title="响应字段列表" href="javascript:void(0)" style="color:#999">响应</a>
+                <!--<a data-modal='{:url("$classuri/res")}?hash={$vo.hash}' data-title="响应字段列表" data-width="80%" href="javascript:void(0)" style="color:#999">响应</a>-->
+            </td>
             <td class='text-center'>{$vo.create_at|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center'>{$vo.update_at|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center'>{$vo.handler_name|default="<span style='color:#ccc'>暂无</span>"}</td>
             <td class='text-center nowrap'>
                 {if auth("$classuri/edit")}
-                <a data-modal='{:url("$classuri/edit")}?id={$vo.id}' data-title="编辑分组" href="javascript:void(0)">编辑</a>
+                <a data-modal='{:url("$classuri/edit")}?id={$vo.id}' data-title="编辑接口" href="javascript:void(0)">编辑</a>
                 {/if}
                 {if auth("$classuri/del")}
                 <span class="text-explode">|</span>
@@ -222,7 +230,7 @@
         {/foreach}
         {if empty($list)}
         <tr>
-            <td colspan="12" style="text-align:center">没 有 记 录 了 哦 !</td>
+            <td colspan="14" style="text-align:center">没 有 记 录 了 哦 !</td>
         </tr>
         {/if}
         </tbody>

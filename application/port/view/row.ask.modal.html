@@ -1,0 +1,62 @@
+{extend name='extra@admin/content'}
+<!-- 后续模态框做这个 -->
+<!-- var index = top.layer.getFrameIndex(window.name);
+top.layer.close(index); 关闭顶层 -->
+
+{block name="content"}
+
+<div class="nowrap pull-left" style="margin-bottom:10px;">
+    {if auth("$classuri/add_param")}
+    <button data-modal="{:url('add_param',['hash'=>$Think.get.hash,'type'=>$type])}" data-title="添加请求参数" class='layui-btn layui-btn-small'><i
+            class='fa fa-plus'></i> 添加请求参数
+    </button>
+    {/if}
+</div>
+
+<form onsubmit="return false;" data-auto="" method="POST">
+    <input type="hidden" value="resort" name="action"/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th class='text-center'>#</th>
+            <th class='text-center'>对应映射</th>
+            <th class='text-left'>字段名称</th>
+            <th class='text-left'>数据类型</th>
+            <th class='text-center'>是否必须</th>
+            <th class='text-left'>默认值</th>
+            <th class='text-left'>字段说明</th>
+            <th class='text-center'>操作者</th>
+            <th class='text-center'>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name='list' id='vo'}
+        <tr>
+            <td class='text-center'>{$i}</td>
+            <td class='text-center'>{$vo.hash|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-left'>{$vo.fieldName|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-left'>{$dataType[$vo.dataType]|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-center'>{$vo.isMust?"<span style='color:#090'>是</span>":"<span style='color:#999'>否</span>"}</td>
+            <td class='text-left'>{$vo.default|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-left'>{$vo.info|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-center'>{$vo.handler_name|default="<span style='color:#ccc'>暂无</span>"}</td>
+            <td class='text-center nowrap'>
+                {if auth("$classuri/edit_param")}
+                <a data-modal='{:url("$classuri/edit_param")}?id={$vo.id}' data-title="编辑接口参数" href="javascript:void(0)">编辑</a>
+                {/if}
+                {if auth("$classuri/del_param")}
+                <span class="text-explode">|</span>
+                <a data-update="{$vo.id}" data-field='delete' data-action='{:url("$classuri/del_param")}'
+                   href="javascript:void(0)" style="color:#c00">删除</a>
+                {/if}
+            </td>
+        </tr>
+        {/volist}
+        {if empty($list)}
+        <tr><td colspan="12" style="text-align:center">没 有 记 录 了 哦 !</td></tr>
+        {/if}
+        </tbody>
+    </table>
+    {if isset($page)}<p>{$page}</p>{/if}
+</form>
+{/block}

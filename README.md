@@ -3,6 +3,7 @@ ThinkApiAdmin for PHP
 * ThinkApiAdmin 是一个基于 Thinkphp 5.0.x 对[ThinkAdmin](https://gitee.com/zoujingli/Think.Admin)V2版本和[ApiAdmin](https://gitee.com/apiadmin/ApiAdmin)V2版本整合开发的后台管理系统，集成后台系统常用功能和API接口管理。
 * 如需使用前后端分离接口管理请使用ApiAdmin V3版本
 * 项目安装及二次开发请参考 ThinkPHP 官方文档及下面的服务环境说明，数据库 sql 文件存放于项目根目录下。
+* 整合v4.0版下载地址: https://gitee.com/gitzwt/ThinkApiAdmin/repository/archive/v4.0.zip
 > 注意：项目测试请另行搭建环境并创建数据库（修改数据库配置 application/database.php.dev => database.php）, 切勿直接使用测试环境数据！
 > * 测试Demo地址: http://demo.zwt520.com
 > * 后台账号密码: admin admin

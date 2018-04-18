@@ -17,7 +17,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label label-required">请求方式</label>
         <div class="col-xs-3">
-            <select name="method" class="input-sm form-control" style='display:block'>
+            <select name="method" class="input-sm form-control">
                 <option value="">- 请选择 -</option>
                 <option {if isset($vo.method)&&$vo.method=='0'}selected{/if} value="0">不限</option>
                 <option {if isset($vo.method)&&$vo.method=='1'}selected{/if} value="1">post</option>
@@ -27,10 +27,10 @@
 
         <label class="layui-form-label label-required">测试模式</label>
         <div class="col-xs-3">
-            <select name="isTest" class="input-sm form-control" style='display:block'>
+            <select name="isTest" class="input-sm form-control">
                 <option value="">- 请选择 -</option>
-                <option {if isset($vo.isTest)&&$vo.isTest=='0'}selected{/if} value="0">关闭测试</option>
                 <option {if isset($vo.isTest)&&$vo.isTest=='1'}selected{/if} value="1">开启测试</option>
+                <option {if isset($vo.isTest)&&$vo.isTest=='0'}selected{/if} value="0">关闭测试</option>
             </select>
         </div>
     </div>
@@ -38,7 +38,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label label-required">AccessToken</label>
         <div class="col-xs-3">
-            <select name="accessToken" class="input-sm form-control" style='display:block'>
+            <select name="accessToken" class="input-sm form-control">
                 <option value="">- 请选择 -</option>
                 <option {if isset($vo.accessToken)&&$vo.accessToken=='0'}selected{/if} value="0">忽略Token</option>
                 <option {if isset($vo.accessToken)&&$vo.accessToken=='1'}selected{/if} value="1">验证Token</option>
@@ -47,7 +47,7 @@
 
         <label class="layui-form-label label-required">用户登录</label>
         <div class="col-xs-3">
-            <select name="needLogin" class="input-sm form-control" style='display:block'>
+            <select name="needLogin" class="input-sm form-control">
                 <option value="">- 请选择 -</option>
                 <option {if isset($vo.needLogin)&&$vo.needLogin=='0'}selected{/if} value="0">忽略登录</option>
                 <option {if isset($vo.needLogin)&&$vo.needLogin=='1'}selected{/if} value="1">验证登录</option>
@@ -69,4 +69,5 @@
         <button class="layui-btn" type='submit'><i class="fa fa-floppy-o"></i> 保存数据</button>
         <button class="layui-btn layui-btn-danger" type='button' data-confirm="确定要取消编辑吗？" data-close><i class="fa fa-close"></i> 取消编辑</button>
     </div>
+    <script>window.form.render();</script>
 </form>

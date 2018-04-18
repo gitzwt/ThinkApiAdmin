@@ -39,7 +39,7 @@ define(['jquery', 'admin.plugs'], function () {
 
     /*! 注册 data-modal 事件行为 */
     this.$body.on('click', '[data-modal]', function () {
-        return $.form.modal($(this).attr('data-modal'), 'open_type=modal', $(this).attr('data-title') || '编辑');
+        return $.form.modal($(this).attr('data-modal'), 'open_type=modal', $(this).attr('data-title') || '编辑', $(this).attr('data-width') || '800px');
     });
 
     /*! 注册 data-open 事件行为 */
