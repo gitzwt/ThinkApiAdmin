@@ -53,7 +53,7 @@ class Buildtoken extends BasicApi
         $accessToken = $this->buildAccessToken($appInfo['app_id'], $appInfo['app_secret']);
         $appInfo['device_id'] = $param['device_id'];
         ApiLog::setAppInfo($appInfo);
-        cache($accessToken, $appInfo, $expires);
+        cache('AccessToken:' . $accessToken, $appInfo, $expires);
         cache($param['device_id'], $accessToken, $expires);
         $return['access_token'] = $accessToken;
         $return['expires_in'] = $expires;
