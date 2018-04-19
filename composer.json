@@ -36,7 +36,8 @@
         "yuan1994/tp-mailer": "^0.2.4",
         "topthink/think-worker": "^1.0",
         "topthink/think-image": "^1.0",
-        "topthink/think-testing": "1.0.*"
+        "topthink/think-testing": "1.0.*",
+        "monolog/monolog": "^1.23"
     },
     "extra": {
         "think-path": "thinkphp"

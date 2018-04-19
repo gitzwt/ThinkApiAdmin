@@ -76,7 +76,7 @@ class Row extends BasicAdmin
         $alert = [
             'type' => 'danger',
             'title' => '操作安全警告（谨慎刷新接口路由）',
-            'content' => '新增接口后必须要刷新接口路由才能访问！请根据实际情况刷新路由!'
+            'content' => '新增或编辑接口后必须刷新接口路由才能正常访问！请根据实际情况刷新路由!'
         ];
         $tags = Db::name($this->table_api_group)->column('id,name');
         $handlers = Db::name($this->table_admin)->column('id,username');
@@ -335,7 +335,7 @@ class Row extends BasicAdmin
     {
         $apiRoutePath = ROOT_PATH . 'application/apiRoute.php';
         $tplPath = ROOT_PATH . 'application/util/apiRoute.tpl';
-        $methodArr = ['*', 'post', 'get'];
+        $methodArr = ['get|post', 'post', 'get'];
 
         $tplStr = file_get_contents($tplPath);
         $listInfo = ApiList::all(['is_deleted' => 0]);

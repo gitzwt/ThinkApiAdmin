@@ -7,9 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
 {
     public static $files = array (
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '841780ea2e1d6545ea3a253239d59c05' => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu/functions.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
         'cc56288302d9df745d97c934d6a6e5f0' => __DIR__ . '/..' . '/topthink/think-queue/src/common.php',
@@ -54,11 +54,16 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Pay\\' => 4,
         ),
         'O' => 
         array (
             'OSS\\' => 4,
+        ),
+        'M' => 
+        array (
+            'Monolog\\' => 8,
         ),
         'F' => 
         array (
@@ -147,6 +152,10 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
         ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
         'Pay\\' => 
         array (
             0 => __DIR__ . '/..' . '/zoujingli/pay-php-sdk/src',
@@ -154,6 +163,10 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         'OSS\\' => 
         array (
             0 => __DIR__ . '/..' . '/aliyuncs/oss-sdk-php/src/OSS',
+        ),
+        'Monolog\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
         'Flc\\Dysms\\' => 
         array (

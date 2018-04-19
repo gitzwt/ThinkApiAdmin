@@ -39,53 +39,6 @@ CREATE TABLE `api_app` (
 
 insert  into `api_app`(`id`,`app_id`,`app_secret`,`app_name`,`app_status`,`app_info`,`handler`,`create_at`,`update_at`,`app_api`) values (1,'69920173','SVRZKjiXaLnaIGaqCqjsCloazWRfOUdl','测试账号',1,'获取api使用的密钥','10000','2018-04-09 23:09:03','2018-04-09 23:09:03',NULL),(2,'72706061','OZswbfqtJHWTSehfGIFSydLzvxhpQWDy','生产账号',0,'应用上线用账号','10000','2018-04-09 23:09:03','2018-04-11 22:47:30',NULL),(3,'48770236','YsOHpGNNdyTirlXBvLsHlIaGHBFLcLzc','Demo',1,'我是呆萌666','10000','2018-04-11 23:19:24','2018-04-11 23:22:30',NULL);
 
-/*Table structure for table `api_auth_group` */
-
-DROP TABLE IF EXISTS `api_auth_group`;
-
-CREATE TABLE `api_auth_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL COMMENT '组名称',
-  `description` varchar(50) NOT NULL COMMENT '组描述',
-  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '组状态：为1正常，为0禁用',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='权限组';
-
-/*Data for the table `api_auth_group` */
-
-insert  into `api_auth_group`(`id`,`name`,`description`,`status`) values (1,'user','用户信息类',1);
-
-/*Table structure for table `api_auth_group_access` */
-
-DROP TABLE IF EXISTS `api_auth_group_access`;
-
-CREATE TABLE `api_auth_group_access` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `uid` mediumint(8) unsigned NOT NULL,
-  `groupId` varchar(255) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户和组的对应关系';
-
-/*Data for the table `api_auth_group_access` */
-
-insert  into `api_auth_group_access`(`id`,`uid`,`groupId`) values (1,2,'1'),(2,3,'1'),(3,4,'1'),(4,5,'1'),(5,6,'1'),(6,7,'1'),(7,8,'1'),(8,9,'1'),(9,10,'1'),(10,11,'1'),(11,12,'1');
-
-/*Table structure for table `api_auth_rule` */
-
-DROP TABLE IF EXISTS `api_auth_rule`;
-
-CREATE TABLE `api_auth_rule` (
-  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `url` char(80) NOT NULL DEFAULT '' COMMENT '规则唯一标识',
-  `groupId` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '权限所属组的ID',
-  `auth` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '权限数值',
-  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态：为1正常，为0禁用',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限细节';
-
-/*Data for the table `api_auth_rule` */
-
 /*Table structure for table `api_document` */
 
 DROP TABLE IF EXISTS `api_document`;
@@ -197,7 +150,7 @@ CREATE TABLE `data_region` (
   PRIMARY KEY (`id`),
   KEY `parent_id` (`parent_id`),
   KEY `region_type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=4044 DEFAULT CHARSET=utf8mb4 COMMENT='小程序基础数据-地区表';
+) ENGINE=InnoDB AUTO_INCREMENT=4044 DEFAULT CHARSET=utf8mb4 COMMENT='基础数据-地区表';
 
 /*Data for the table `data_region` */
 
