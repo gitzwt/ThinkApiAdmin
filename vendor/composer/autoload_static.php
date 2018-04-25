@@ -54,7 +54,9 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
             'Pay\\' => 4,
         ),
         'O' => 
@@ -152,9 +154,17 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         array (
             0 => __DIR__ . '/..' . '/qiniu/php-sdk/src/Qiniu',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
         ),
         'Pay\\' => 
         array (
@@ -174,7 +184,7 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
         ),
         'Endroid\\QrCode\\' => 
         array (
-            0 => __DIR__ . '/..' . '/endroid/qrcode/src',
+            0 => __DIR__ . '/..' . '/endroid/qr-code/src',
         ),
         'Doctrine\\Instantiator\\' => 
         array (
@@ -188,10 +198,6 @@ class ComposerStaticInit4bc699ddf295b08fae1ab3711fa28eb4
             'Prophecy\\' => 
             array (
                 0 => __DIR__ . '/..' . '/phpspec/prophecy/src',
-            ),
-            'PHPExcel' => 
-            array (
-                0 => __DIR__ . '/..' . '/phpoffice/phpexcel/Classes',
             ),
         ),
     );

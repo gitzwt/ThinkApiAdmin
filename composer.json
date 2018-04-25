@@ -28,16 +28,16 @@
         "topthink/think-captcha": "^1.0",
         "topthink/think-mongo": "^1.1",
         "topthink/think-queue": "^1.0",
-        "endroid/qrcode": "^1.9",
+        "endroid/qr-code": "^1.9",
         "aliyuncs/oss-sdk-php": "^2.2",
         "flc/dysms": "^1.0",
         "zoujingli/pay-php-sdk": "^1.0",
-        "phpoffice/phpexcel": "^1.8",
         "yuan1994/tp-mailer": "^0.2.4",
         "topthink/think-worker": "^1.0",
         "topthink/think-image": "^1.0",
         "topthink/think-testing": "1.0.*",
-        "monolog/monolog": "^1.23"
+        "monolog/monolog": "^1.23",
+        "phpoffice/phpspreadsheet": "^1.2"
     },
     "extra": {
         "think-path": "thinkphp"

@@ -405,7 +405,7 @@ class Row extends BasicAdmin
         $param = $this->request->param();
         empty($param['showName']) && $this->error('请填写参数字段名称!');
         if (isset($param['dataType']) && $param['dataType'] === '') $this->error('请选择参数数据类型!');
-        $fields_name = Db::name($this->table_api_fields)->where('showName', $param['showName'])->find();
+        $fields_name = Db::name($this->table_api_fields)->where(['showName' => $param['showName'],'hash' => $param['hash']])->find();
         if (!empty($fields_name)) {
             $this->error('该参数字段已存在,请勿重复添加!');
         }
