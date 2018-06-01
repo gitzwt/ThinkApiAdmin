@@ -20,6 +20,8 @@ class Plugs extends BasicAdmin
     /**
      * 文件上传
      * @return \think\response\View
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function upfile()
     {
@@ -37,6 +39,9 @@ class Plugs extends BasicAdmin
     /**
      * 通用文件上传
      * @return \think\response\Json
+     * @throws \OSS\Core\OssException
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function upload()
     {
@@ -62,6 +67,9 @@ class Plugs extends BasicAdmin
 
     /**
      * 文件状态检查
+     * @throws \OSS\Core\OssException
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     public function upstate()
     {
@@ -101,6 +109,8 @@ class Plugs extends BasicAdmin
      * 生成七牛文件上传Token
      * @param $key
      * @return string
+     * @throws \think\Exception
+     * @throws \think\exception\PDOException
      */
     protected function _getQiniuToken($key)
     {
