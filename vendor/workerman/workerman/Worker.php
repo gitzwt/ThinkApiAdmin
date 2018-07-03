@@ -33,7 +33,7 @@ class Worker
      *
      * @var string
      */
-    const VERSION = '3.5.9';
+    const VERSION = '3.5.11';
 
     /**
      * Status starting.
@@ -324,7 +324,7 @@ class Worker
     /**
      * All worker instances.
      *
-     * @var array
+     * @var Worker[]
      */
     protected static $_workers = array();
 
@@ -504,7 +504,7 @@ class Worker
     protected static function init()
     {
         set_error_handler(function($code, $msg, $file, $line){
-            echo "$msg in file $file on line $line\n";
+            Worker::safeEcho("$msg in file $file on line $line\n");
         });
 
         // Start file.
@@ -1062,6 +1062,9 @@ class Worker
         $handle = fopen(static::$stdoutFile, "a");
         if ($handle) {
             unset($handle);
+            set_error_handler(function(){});
+            fclose($STDOUT);
+            fclose($STDERR);
             fclose(STDOUT);
             fclose(STDERR);
             $STDOUT = fopen(static::$stdoutFile, "a");
@@ -1069,6 +1072,7 @@ class Worker
             // change output stream
             static::$_outputStream = null;
             static::outputStream($STDOUT);
+            restore_error_handler();
         } else {
             throw new Exception('can not open stdoutFile ' . static::$stdoutFile);
         }
@@ -2204,6 +2208,8 @@ class Worker
             $this->onMessage = function () {};
         }
 
+        restore_error_handler();
+        
         // Try to emit onWorkerStart callback.
         if ($this->onWorkerStart) {
             try {
@@ -2221,7 +2227,6 @@ class Worker
             }
         }
 
-        restore_error_handler();
         // Main loop.
         static::$globalEvent->loop();
     }

@@ -439,17 +439,17 @@
     },
     {
         "name": "phpoffice/phpspreadsheet",
-        "version": "1.2.1",
-        "version_normalized": "1.2.1.0",
+        "version": "1.3.1",
+        "version_normalized": "1.3.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-            "reference": "36acc372875c4d894dc093825ce4f62209db5a76"
+            "reference": "aa5b0d0236c907fd8dba0883f3ceb97cc52e46ec"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/PHPOffice/PhpSpreadsheet/36acc372875c4d894dc093825ce4f62209db5a76.zip",
-            "reference": "36acc372875c4d894dc093825ce4f62209db5a76",
+            "url": "https://files.phpcomposer.com/files/PHPOffice/PhpSpreadsheet/aa5b0d0236c907fd8dba0883f3ceb97cc52e46ec.zip",
+            "reference": "aa5b0d0236c907fd8dba0883f3ceb97cc52e46ec",
             "shasum": ""
         },
         "require": {
@@ -483,7 +483,7 @@
             "mpdf/mpdf": "Option for rendering PDF with PDF Writer",
             "tecnick.com/tcpdf": "Option for rendering PDF with PDF Writer"
         },
-        "time": "2018-04-10T03:53:16+00:00",
+        "time": "2018-06-12T13:40:21+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -1576,8 +1576,8 @@
     },
     {
         "name": "symfony/dom-crawler",
-        "version": "v2.8.41",
-        "version_normalized": "2.8.41.0",
+        "version": "v2.8.42",
+        "version_normalized": "2.8.42.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/dom-crawler.git",
@@ -1635,23 +1635,23 @@
     },
     {
         "name": "symfony/options-resolver",
-        "version": "v3.4.11",
-        "version_normalized": "3.4.11.0",
+        "version": "v3.4.12",
+        "version_normalized": "3.4.12.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/options-resolver.git",
-            "reference": "f3109a6aedd20e35c3a33190e932c2b063b7b50e"
+            "reference": "cc5e98ed91688a22a7162a8800096356f9076b1d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/symfony/options-resolver/f3109a6aedd20e35c3a33190e932c2b063b7b50e.zip",
-            "reference": "f3109a6aedd20e35c3a33190e932c2b063b7b50e",
+            "url": "https://files.phpcomposer.com/files/symfony/options-resolver/cc5e98ed91688a22a7162a8800096356f9076b1d.zip",
+            "reference": "cc5e98ed91688a22a7162a8800096356f9076b1d",
             "shasum": ""
         },
         "require": {
             "php": "^5.5.9|>=7.0.8"
         },
-        "time": "2018-01-11T07:56:07+00:00",
+        "time": "2018-05-30T04:26:49+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1809,8 +1809,8 @@
     },
     {
         "name": "symfony/yaml",
-        "version": "v3.4.11",
-        "version_normalized": "3.4.11.0",
+        "version": "v3.4.12",
+        "version_normalized": "3.4.12.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/yaml.git",
@@ -2084,20 +2084,20 @@
     },
     {
         "name": "topthink/think-mongo",
-        "version": "v1.8.4",
-        "version_normalized": "1.8.4.0",
+        "version": "v1.8.5",
+        "version_normalized": "1.8.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/top-think/think-mongo.git",
-            "reference": "4ea4eaf8d7dc272122e124c6e795b3b5badb30ab"
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/top-think/think-mongo/4ea4eaf8d7dc272122e124c6e795b3b5badb30ab.zip",
-            "reference": "4ea4eaf8d7dc272122e124c6e795b3b5badb30ab",
+            "url": "https://files.phpcomposer.com/files/top-think/think-mongo/657cc79bd5f090a58b0cc83776073dd69c83a3d1.zip",
+            "reference": "657cc79bd5f090a58b0cc83776073dd69c83a3d1",
             "shasum": ""
         },
-        "time": "2018-04-01T11:14:58+00:00",
+        "time": "2018-06-03T01:51:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2301,17 +2301,17 @@
     },
     {
         "name": "workerman/workerman",
-        "version": "v3.5.9",
-        "version_normalized": "3.5.9.0",
+        "version": "v3.5.11",
+        "version_normalized": "3.5.11.0",
         "source": {
             "type": "git",
             "url": "https://github.com/walkor/Workerman.git",
-            "reference": "0bf5cf018912286a26bd14e1981dfc060fd98bb0"
+            "reference": "c83e189b5855d91f99a7d01ac58f5bbc7161b5e5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/walkor/Workerman/0bf5cf018912286a26bd14e1981dfc060fd98bb0.zip",
-            "reference": "0bf5cf018912286a26bd14e1981dfc060fd98bb0",
+            "url": "https://files.phpcomposer.com/files/walkor/Workerman/c83e189b5855d91f99a7d01ac58f5bbc7161b5e5.zip",
+            "reference": "c83e189b5855d91f99a7d01ac58f5bbc7161b5e5",
             "shasum": ""
         },
         "require": {
@@ -2320,7 +2320,7 @@
         "suggest": {
             "ext-event": "For better performance. "
         },
-        "time": "2018-05-29T05:40:06+00:00",
+        "time": "2018-06-07T09:36:14+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2401,23 +2401,23 @@
     },
     {
         "name": "zoujingli/ip2region",
-        "version": "v1.0.3",
-        "version_normalized": "1.0.3.0",
+        "version": "v1.0.4",
+        "version_normalized": "1.0.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/zoujingli/ip2region.git",
-            "reference": "f39599879c9d0980f3dc60f789c1e709fe807ce6"
+            "reference": "0a55d6c1ab6b4cbaa204824557aa950aaaefda0e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://files.phpcomposer.com/files/zoujingli/ip2region/f39599879c9d0980f3dc60f789c1e709fe807ce6.zip",
-            "reference": "f39599879c9d0980f3dc60f789c1e709fe807ce6",
+            "url": "https://files.phpcomposer.com/files/zoujingli/ip2region/0a55d6c1ab6b4cbaa204824557aa950aaaefda0e.zip",
+            "reference": "0a55d6c1ab6b4cbaa204824557aa950aaaefda0e",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.3"
+            "php": ">=5.3"
         },
-        "time": "2018-05-31T10:07:12+00:00",
+        "time": "2018-06-01T02:21:05+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -2427,9 +2427,16 @@
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "Apache 2.0"
+            "Apache-2.0"
         ],
-        "description": "Ip2Region",
+        "authors": [
+            {
+                "name": "Anyon",
+                "email": "zoujingli@qq.com",
+                "homepage": "http://ctolog.com"
+            }
+        ],
+        "description": "Ip2Region for PHP",
         "homepage": "https://github.com/zoujingli/Ip2Region",
         "keywords": [
             "Ip2Region"

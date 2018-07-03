@@ -34,12 +34,12 @@
             <div class="four wide column">
                 <div class="ui vertical menu" style="width: 100%;overflow: auto;">
                     {volist name="apiList" id="vo"}
-                        <a class="{if condition=" $hash == $vo['hash']"}active{/if} teal item"
-                            href="{:url('/wiki/'.$gid.'/'.$vo["hash"])}">
-                        {:mb_substr($vo['info'], 0, 11)}...
-                        <div class="ui {if condition=" $hash== $vo['hash']"}teal{/if} label"> &gt;</div>
-                        </a>
-                    {/volist}
+                    <a class="{if condition=" $hash == $vo['hash']"}active{/if} teal item"
+                    href="{:url('/wiki/'.$gid.'/'.$vo["hash"])}">
+                    {$i}. {:mb_substr($vo['info'], 0, 10)}..
+                    <div class="ui {if condition=" $hash== $vo['hash']"}teal{/if} label"> &gt;</div>
+                </a>
+                {/volist}
             </div>
         </div>
         <div class="twelve wide column">
@@ -204,28 +204,30 @@
                             </tr>
                             </thead>
                             <tbody>
-                                {volist name="request" id="vo"}
-                                    <tr>
-                                        <td>{$vo['fieldName']}</td>
-                                        <td>{$dataType[$vo['dataType']]}</td>
-                                        <td>{$vo['isMust']==1?'<span class="ui green label">必填</span>':'<span class="ui teal label">可选</span>'}
-                                        </td>
-                                        <td>
-                                            {$vo['default']}
-                                            {if condition="$dataType[$vo['dataType']] eq 'File'"}
-                                                <img src="__PUBLIC__/static/plugs/uploader/theme/image.png" id="img_show" style="width: 50px;height: 34px;">
-                                            {/if}
-                                        </td>
-                                        <td class="ui input focus" style="width:100%;">
-                                            {if condition="$dataType[$vo['dataType']] eq 'File'"}
-                                                <input type="file" name="file[]" id="file_upload" multiple="multiple">
-                                                <input type="hidden" name="{$vo.fieldName}" id="file_url">
-                                            {else /}
-                                                <input type="text" name="{$vo.fieldName}" value="{$vo.default}" placeholder="{$vo.info}">
-                                            {/if}
-                                        </td>
-                                    </tr>
-                                {/volist}
+                            {volist name="request" id="vo"}
+                            <tr>
+                                <td>{$vo['fieldName']}</td>
+                                <td>{$dataType[$vo['dataType']]}</td>
+                                <td>{$vo['isMust']==1?'<span class="ui green label">必填</span>':'<span class="ui teal label">可选</span>'}
+                                </td>
+                                <td>
+                                    {$vo['default']}
+                                    {if condition="$dataType[$vo['dataType']] eq 'File'"}
+                                    <img src="__PUBLIC__/static/plugs/uploader/theme/image.png" id="img_show" style="width: 50px;height: 34px;">
+                                    {/if}
+                                </td>
+                                <td class="ui input focus" style="width:100%;">
+                                    {if condition="$dataType[$vo['dataType']] eq 'File'"}
+                                    <!-- 多文件上传 -->
+                                    <!--<input type="file" name="file[]" id="file_upload" multiple="multiple">-->
+                                    <input type="file" name="file" id="file_upload">
+                                    <input type="hidden" name="{$vo.fieldName}" id="file_url">
+                                    {else /}
+                                    <input type="text" name="{$vo.fieldName}" value="{$vo.default}" placeholder="{$vo.info}">
+                                    {/if}
+                                </td>
+                            </tr>
+                            {/volist}
                             </tbody>
                         </table>
                     </form>

@@ -437,7 +437,7 @@ class Http
         self::tryGcSessions();
 
         if (HttpCache::$instance->sessionStarted) {
-            echo "already sessionStarted\n";
+            Worker::safeEcho("already sessionStarted\n");
             return true;
         }
         HttpCache::$instance->sessionStarted = true;
