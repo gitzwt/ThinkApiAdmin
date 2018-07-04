@@ -15,76 +15,72 @@
 {block name="content"}
 
 <!-- 表单搜索 开始 -->
-<form class="animated form-search" action="__SELF__" onsubmit="return false" method="get">
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="nickname" value="{$Think.get.nickname|default=''}" placeholder="昵称"
-                       class="input-sm form-control">
-            </div>
+<form class="layui-form layui-form-pane form-search" action="__SELF__" onsubmit="return false" method="get">
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">昵称</label>
+        <div class="layui-input-inline">
+            <input name="nickname" value="{$Think.get.nickname|default=''}" placeholder="粉丝昵称" class="layui-input">
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <select name="sex" class="input-sm form-control">
-                    <option value="">- 性别 -</option>
-                    <!--{if $Think.get.sex eq 1}-->
-                    <option selected value="1">- 男 -</option>
-                    <!--{else}-->
-                    <option value="1">- 男 -</option>
-                    <!--{/if}-->
-                    <!--{if $Think.get.sex eq 2}-->
-                    <option selected value="2">- 女 -</option>
-                    <!--{else}-->
-                    <option value="2">- 女 -</option>
-                    <!--{/if}-->
-                </select>
-            </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-inline">
+            <select name='sex' class='layui-select' lay-search>
+                <option value=''> - 选择性别 -</option>
+                <!--{if $Think.get.sex eq 1}-->
+                <option selected value="1">- 男 -</option>
+                <!--{else}-->
+                <option value="1">- 男 -</option>
+                <!--{/if}-->
+                <!--{if $Think.get.sex eq 2}-->
+                <option selected value="2">- 女 -</option>
+                <!--{else}-->
+                <option value="2">- 女 -</option>
+                <!--{/if}-->
+            </select>
         </div>
+    </div>
 
-        <div class="col-xs-2">
-            <div class="form-group">
-                <select name="tag" class="input-sm form-control">
-                    <option value="">- 粉丝标签 -</option>
-                    <!--{foreach $tags as $key=>$tag}-->
-                    <!--{if $Think.get.tag eq $key}-->
-                    <option selected value="{$key}">{$tag}</option>
-                    <!--{else}-->
-                    <option value="{$key}">{$tag}</option>
-                    <!--{/if}-->
-                    <!--{/foreach}-->
-                </select>
-            </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">粉丝标签</label>
+        <div class="layui-input-inline">
+            <select name='tag' class='layui-select' lay-search>
+                <option value=''> - 选择标签 -</option>
+                <!--{foreach $tags as $key=>$tag}-->
+                <!--{if $Think.get.tag eq $key}-->
+                <option selected value="{$key}">{$tag}</option>
+                <!--{else}-->
+                <option value="{$key}">{$tag}</option>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </select>
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <input type="text" name="country" value="{$Think.get.country|default=''}" placeholder="国家"
-                       class="input-sm form-control">
-            </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">国家</label>
+        <div class="layui-input-inline">
+            <input name="country" value="{$Think.get.country|default=''}" placeholder="国家" class="layui-input">
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <input type="text" name="province" value="{$Think.get.province|default=''}" placeholder="省份"
-                       class="input-sm form-control">
-            </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">省份</label>
+        <div class="layui-input-inline">
+            <input name="province" value="{$Think.get.province|default=''}" placeholder="省份" class="layui-input">
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <input type="text" name="city" value="{$Think.get.city|default=''}" placeholder="城市"
-                       class="input-sm form-control">
-            </div>
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">城市</label>
+        <div class="layui-input-inline">
+            <input name="city" value="{$Think.get.city|default=''}" placeholder="城市" class="layui-input">
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-white"><i class="fa fa-search"></i> 搜索</button>
-            </div>
-        </div>
-
+    <div class="layui-form-item layui-inline">
+        <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
     </div>
 </form>
 <!-- 表单搜索 结束 -->
@@ -151,6 +147,7 @@
         </tbody>
     </table>
     {if isset($page)}<p>{$page}</p>{/if}
+    <script>window.form.render();</script>
 </form>
 
 <div id="tags-box" class="hide">

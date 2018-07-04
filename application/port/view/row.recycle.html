@@ -19,62 +19,58 @@
 {block name="content"}
 
 <!-- 表单搜索 开始 -->
-<form class="animated form-search" action="__SELF__" onsubmit="return false" method="get">
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="apiName" value="{$Think.get.apiName|default=''}" placeholder="接口名称"
-                       class="input-sm form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="hash" value="{$Think.get.hash|default=''}" placeholder="接口HASH"
-                       class="input-sm form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="info" value="{$Think.get.info|default=''}" placeholder="接口简介"
-                       class="input-sm form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <select name="handler" class="input-sm form-control">
-                    <option value="">- 操作者 -</option>
-                    <!--{foreach $handlers as $key=>$handler}-->
-                    <!--{if $Think.get.handler eq $key}-->
-                    <option selected value="{$key}">{$handler}</option>
-                    <!--{else}-->
-                    <option value="{$key}">{$handler}</option>
-                    <!--{/if}-->
-                    <!--{/foreach}-->
-                </select>
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <select name="status" class="input-sm form-control">
-                    <option value="">- 状态 -</option>
-                    <option {if $Think.get.status=='1'}selected{/if} value="1">使用中</option>
-                    <option {if $Think.get.status=='0'}selected{/if} value="0">已禁用</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-white"><i class="fa fa-search"></i> 搜索</button>
-            </div>
+<form class="layui-form layui-form-pane form-search" action="__SELF__" onsubmit="return false" method="get">
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">接口名称</label>
+        <div class="layui-input-inline">
+            <input name="apiName" value="{$Think.get.apiName|default=''}" placeholder="接口名称" class="layui-input">
         </div>
     </div>
 
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">接口HASH</label>
+        <div class="layui-input-inline">
+            <input name="hash" value="{$Think.get.hash|default=''}" placeholder="接口HASH" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">接口简介</label>
+        <div class="layui-input-inline">
+            <input name="info" value="{$Think.get.info|default=''}" placeholder="接口简介" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">操作者</label>
+        <div class="layui-input-inline">
+            <select name='handler' class='layui-select' lay-search>
+                <option value=''> - 选择操作者 -</option>
+                <!--{foreach $handlers as $key=>$handler}-->
+                <!--{if $Think.get.handler eq $key}-->
+                <option selected value="{$key}">{$handler}</option>
+                <!--{else}-->
+                <option value="{$key}">{$handler}</option>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-inline">
+            <select name='status' class='layui-select' lay-search>
+                <option value=''> - 选择状态 -</option>
+                <option {if $Think.get.status=='1'}selected{/if} value="1">使用中</option>
+                <option {if $Think.get.status=='0'}selected{/if} value="0">已禁用</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
+    </div>
 </form>
 <!-- 表单搜索 结束 -->
 
@@ -156,5 +152,6 @@
         </tbody>
     </table>
     {if isset($page)}<p>{$page}</p>{/if}
+    <script>window.form.render();</script>
 </form>
 {/block}

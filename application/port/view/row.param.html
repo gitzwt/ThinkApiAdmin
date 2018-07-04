@@ -13,55 +13,51 @@
 {block name="content"}
 
 <!-- 表单搜索 开始 -->
-<form class="animated form-search" action="__SELF__" onsubmit="return false" method="get">
-
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="hash" value="{$Think.get.hash|default=''}" placeholder="接口映射Hash"
-                       class="input-sm form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="fieldName" value="{$Think.get.fieldName|default=''}" placeholder="接口名称"
-                       class="input-sm form-control">
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <select name="handler" class="input-sm form-control">
-                    <option value="">- 操作者 -</option>
-                    <!--{foreach $handlers as $key=>$handler}-->
-                    <!--{if $Think.get.handler eq $key}-->
-                    <option selected value="{$key}">{$handler}</option>
-                    <!--{else}-->
-                    <option value="{$key}">{$handler}</option>
-                    <!--{/if}-->
-                    <!--{/foreach}-->
-                </select>
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <select name="type" class="input-sm form-control">
-                    <option value="">- 参数类型 -</option>
-                    <option {if $Think.get.type=='0'}selected{/if} value="0">请求参数</option>
-                    <option {if $Think.get.type=='1'}selected{/if} value="1">响应参数</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="col-xs-1">
-            <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-white"><i class="fa fa-search"></i> 搜索</button>
-            </div>
+<form class="layui-form layui-form-pane form-search" action="__SELF__" onsubmit="return false" method="get">
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">接口映射Hash</label>
+        <div class="layui-input-inline">
+            <input name="hash" value="{$Think.get.hash|default=''}" placeholder="接口映射Hash" class="layui-input">
         </div>
     </div>
 
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">接口名称</label>
+        <div class="layui-input-inline">
+            <input name="fieldName" value="{$Think.get.fieldName|default=''}" placeholder="接口名称" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">操作者</label>
+        <div class="layui-input-inline">
+            <select name='handler' class='layui-select' lay-search>
+                <option value=''> - 选择操作者 -</option>
+                <!--{foreach $handlers as $key=>$handler}-->
+                <!--{if $Think.get.handler eq $key}-->
+                <option selected value="{$key}">{$handler}</option>
+                <!--{else}-->
+                <option value="{$key}">{$handler}</option>
+                <!--{/if}-->
+                <!--{/foreach}-->
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">参数类型</label>
+        <div class="layui-input-inline">
+            <select name='type' class='layui-select' lay-search>
+                <option value=''> - 选择类型 -</option>
+                <option {if $Think.get.type=='0'}selected{/if} value="0">请求参数</option>
+                <option {if $Think.get.type=='1'}selected{/if} value="1">响应参数</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-inline">
+        <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
+    </div>
 </form>
 <!-- 表单搜索 结束 -->
 
@@ -118,5 +114,6 @@
         </tbody>
     </table>
     {if isset($page)}<p>{$page}</p>{/if}
+    <script>window.form.render();</script>
 </form>
 {/block}

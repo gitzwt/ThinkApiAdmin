@@ -10,19 +10,16 @@
 {block name="content"}
 
 <!-- 表单搜索 开始 -->
-<form class="animated form-search" action="__SELF__" onsubmit="return false" method="get">
-    <div class="row">
-        <div class="col-xs-2">
-            <div class="form-group">
-                <input type="text" name="name" value="{$Think.get.name|default=''}" placeholder="标签" class="input-sm form-control">
-            </div>
+<form class="layui-form layui-form-pane form-search" action="__SELF__" onsubmit="return false" method="get">
+    <div class="layui-form-item layui-inline">
+        <label class="layui-form-label">标签</label>
+        <div class="layui-input-inline">
+            <input name="name" value="{$Think.get.name|default=''}" placeholder="标签" class="layui-input">
         </div>
+    </div>
 
-        <div class="col-xs-1">
-            <div class="form-group">
-                <button type="submit" class="btn btn-sm btn-white"><i class="fa fa-search"></i> 搜索</button>
-            </div>
-        </div>
+    <div class="layui-form-item layui-inline">
+        <button class="layui-btn layui-btn-primary"><i class="layui-icon">&#xe615;</i> 搜 索</button>
     </div>
 </form>
 <!-- 表单搜索 结束 -->
@@ -53,7 +50,6 @@
                 <td class='text-center'>{$vo.id < 100 ? "系统标签" : "自定义标签"}</td>
                 <td class='text-center'>{$vo.count|default=''}</td>
                 <td class='text-center nowrap'>
-
                     {if auth("$classuri/edit")}
                     {if $vo.id >= 100}
                     <span class="text-explode">|</span>
@@ -62,7 +58,6 @@
                     <a href="javascript:void(0)" style="color:#999">编辑</a>
                     {/if}
                     {/if}
-
                     {if auth("$classuri/del")}
                     <span class="text-explode">|</span>
                     {if $vo.id >= 100}
@@ -71,7 +66,6 @@
                     <a href="javascript:void(0)" style="color:#999">删除</a>
                     {/if}
                     {/if}
-
                 </td>
             </tr>
             {/foreach}
@@ -81,5 +75,6 @@
         </tbody>
     </table>
     {if isset($page)}<p>{$page}</p>{/if}
+    <script>window.form.render();</script>
 </form>
 {/block}
