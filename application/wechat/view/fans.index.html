@@ -93,8 +93,8 @@
             <th class='list-table-check-td'>
                 <input data-none-auto="" data-check-target='.list-check-box' type='checkbox'/>
             </th>
-            <th class='text-center'>用户昵称</th>
-            <th class='text-center'>OpenID</th>
+            <th class='text-left'>用户昵称</th>
+            <th class='text-left'>OpenID</th>
             <th class='text-center'>性别</th>
             <th class='text-center'>标签</th>
             <th class='text-center'>区域</th>
@@ -107,32 +107,28 @@
             <td class='list-table-check-td'>
                 <input class="list-check-box" value='{$vo.id}' type='checkbox'/>
             </td>
-            <td class='text-center'>
-                <img style="width:25px;height:25px;border-radius:50%;margin-right:10px" data-tips-image
-                     src="{$vo.headimgurl}"/>
+            <td class='text-left'>
+                <img style="width:25px;height:25px;border-radius:50%;margin-right:10px" data-tips-image src="{$vo.headimgurl|default='__PUBLIC__/static/theme/default/img/unsharp.jpg'}"/>
                 {$vo.nickname|default="<span style='color:#999'>未设置微信昵称</span>"}
             </td>
-            <td class='text-center'>{$vo.openid|default="<span style='color:#ccc'>未知</span>"}</td>
+            <td class='text-left'>{$vo.openid|default="<span style='color:#ccc'>未知</span>"}</td>
             <td class='text-center'>{$vo.sex==1?'男':($vo.sex==2?'女':'未知')}</td>
             <td>
-                    <span>
-                        <a data-add-tag='{$vo.id}' data-used-id='{:join(",",array_keys($vo.tags_list))}'
-                           id="tag-fans-{$vo.id}" href='javascript:void(0)'
-                           style='font-size:12px;font-weight:400;border-radius:50%;background:#9f9f9f'
-                           class='label label-default'>+</a>
-                    </span>
-
+                <span>
+                    <a data-add-tag='{$vo.id}' data-used-id='{:join(",",array_keys($vo.tags_list))}'
+                       id="tag-fans-{$vo.id}" href='javascript:void(0)'
+                       style='font-size:12px;font-weight:400;border-radius:50%;background:#9f9f9f'
+                       class='label label-default'>+</a>
+                </span>
                 {if empty($vo.tags_list)}
                 <span style='color:#999'>尚未设置标签</span>
                 {else}
                 {foreach $vo.tags_list as $k=>$tag}
                 <span>
-                        <a href='javascript:void(0)' style='font-size:12px;font-weight:400;background:#9f9f9f'
-                           class='label label-default'>{$tag}</a>
-                    </span>
+                    <a href='javascript:void(0)' style='font-size:12px;font-weight:400;background:#9f9f9f' class='label label-default'>{$tag}</a>
+                </span>
                 {/foreach}
                 {/if}
-
             </td>
             <td class='text-center'>{$vo.country|default='<span style="color:#999">未设置区域信息</span>'}{$vo.province}{$vo.city}
             </td>
@@ -166,7 +162,7 @@
             <button type="button" data-event="confirm" class="layui-btn layui-btn-small"><i class="fa fa-floppy-o"></i>
                 保存数据
             </button>
-            <button type="button" data-event="cancel" class="layui-btn layui-btn-danger layui-btn-small" type='button'>
+            <button type="button" data-event="cancel" class="layui-btn layui-btn-danger layui-btn-small">
                 <i class="fa fa-close"></i>
                 取消编辑
             </button>
@@ -180,11 +176,11 @@
 <script>
     // 添加标签
     $('body').find('[data-add-tag]').map(function () {
-        var self = this;
-        var fans_id = this.getAttribute('data-add-tag');
-        var used_ids = (this.getAttribute('data-used-id') || '').split(',');
-        var $content = $(document.getElementById('tags-box').innerHTML);
-        for (var i in used_ids) {
+        let self = this;
+        let fans_id = this.getAttribute('data-add-tag');
+        let used_ids = (this.getAttribute('data-used-id') || '').split(',');
+        let $content = $(document.getElementById('tags-box').innerHTML);
+        for (let i in used_ids) {
             $content.find('[value="' + used_ids[i] + '"]').attr('checked', 'checked');
         }
         $content.attr('fans_id', fans_id);
@@ -194,7 +190,7 @@
         });
         // 标签面板确定
         $content.on('click', '[data-event="confirm"]', function () {
-            var tags = [];
+            let tags = [];
             $content.find('input:checked').map(function () {
                 tags.push(this.value);
             });

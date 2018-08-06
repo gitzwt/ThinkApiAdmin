@@ -196,6 +196,25 @@ class ToolsService
     }
 
     /**
+     * 查询快递公司,通过快递单号
+     * @param $code string 快递单号
+     * @return mixed
+     */
+    public static function expressName($code)
+    {
+        $express = [
+            'yunda' => '韵达', 'shentong' => '申通', 'shunfeng' => '顺丰', 'ems' => 'EMS', 'youzhengguonei' => '邮政',
+            'huitongkuaidi' => '百世', 'zhongtong' => '中通', 'yuantong' => '圆通', 'guotongkuaidi' => '国通', 'tiantian' => '天天',
+            'youshuwuliu' => '优速', 'quanfengkuaidi' => '全峰', 'zhaijisong' => '宅急送', 'jd' => '京东', 'debangwuliu' => '德邦', 'wanxiangwuliu' => '万象'
+        ]; // 快递公司编号 => 快递公司简称
+        $client_ip = Request::instance()->ip();
+        $header = ['Host' => 'www.kuaidi100.com', 'CLIENT-IP' => $client_ip, 'X-FORWARDED-FOR' => $client_ip];
+        $autoResult = HttpService::get("http://www.kuaidi100.com/autonumber/autoComNum?text={$code}", [], 30, $header);
+        $comCode = (json_decode($autoResult,true)['auto'])[0]['comCode'];
+        return $express[$comCode] ?? '未知';
+    }
+
+    /**
      * * 阿里大于短信服务
      * @param string $code 短信模板code
      * @param array $param 短信内容(按模板对应数组排)
