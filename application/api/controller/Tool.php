@@ -196,7 +196,7 @@ class Tool extends BasicApi
             return $this->buildFailed(ReturnCode::EMPTY_PARAMS, '缺少图片');
         }
         // base64解码后的图片字符串
-        $img = base64_decode(param['img']);
+        $img = base64_decode($param['img']);
         // 获取上传存储类型
         $uptype = in_array($param['uptype'], ['local', 'qiniu', 'oss']) ? $param['uptype'] : sysconf('storage_type');
         $folder = Cache::has('folder_name') ? Cache::get('folder_name') : Cache::set('folder_name', Strs::randString(16, 3, '0123456789'), 86400);

@@ -81,7 +81,7 @@ class NodeService
     public static function get($nodes = [])
     {
         $alias = Db::name('SystemNode')->column('node,is_menu,is_auth,is_login,title');
-        $ignore = ['index', 'wechat/api', 'wechat/notify', 'wechat/review', 'admin/plugs', 'admin/login', 'admin/index'];
+        $ignore = ['index', 'wechat/api', 'wechat/notify', 'wechat/review', 'admin/plugs', 'admin/login', 'admin/index', 'api', 'wiki', 'worker'];
         foreach (self::getNodeTree(APP_PATH) as $thr) {
             foreach ($ignore as $str) {
                 if (stripos($thr, $str) === 0) {

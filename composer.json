@@ -37,7 +37,21 @@
         "topthink/think-image": "^1.0",
         "topthink/think-testing": "1.0.*",
         "monolog/monolog": "^1.23",
-        "phpoffice/phpspreadsheet": "^1.2"
+        "phpoffice/phpspreadsheet": "^1.2",
+        "hanson/face": "^2.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "jenssegers/date": "^3.4",
+        "chumper/zipper": "^1.0",
+        "anchu/ftp": "^2.0",
+        "ramsey/uuid": "^3.7",
+        "fzaninotto/faker": "^1.8",
+        "jaeger/querylist": "^4.0",
+        "jaeger/querylist-phantomjs": "^4.0",
+        "jaeger/curlmulti": "^1.0",
+        "jaeger/querylist-rule-baidu": "^4.0",
+        "jaeger/querylist-absolute-url": "^4.0",
+        "liesauer/ql-plugin-simpleform": "^4.0",
+        "mountainguan/ql-plugin-disguise": "^4.0"
     },
     "extra": {
         "think-path": "thinkphp"
